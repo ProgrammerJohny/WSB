@@ -3,11 +3,30 @@
 {
   window.open("main/Ind/add.php","_self");
 }
+function addFirmowy()
+{
+  window.open("main/Firm/add.php","_self");
+}
 function editIndywidualny()
 {
   window.open("main/Ind/overview.php","_self");
 }
-
+function editFirmowy()
+{
+  window.open("main/Firm/overview.php","_self");
+}
+function viewArchiwum()
+{
+  window.open("arch/main.php","_self");
+}
+function viewRaporty()
+{
+  window.open("reports/index.php","_self")
+}
+function sendMail()
+{
+  window.open("mailto:janzalesinski@gmail.com","_self");
+}
 function SearchName() {
   var input, filter, table, tr, td, i;
   input = document.getElementById("input_ind");
