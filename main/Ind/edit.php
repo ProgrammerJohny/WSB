@@ -51,104 +51,112 @@ if($_SESSION["zalogowany"]!=1){
 	else ShowLogin();
 }
 else {
-  try
+	try
   	{
   		$pdo = new PDO('mysql:host=localhost;dbname=aplikacja', 'admin', 'Webmaster2017');
   		$pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $pdo->query("set names utf8");
 
 
-  		if(isset($_GET['id'])) // 1
+  		if(isset($_GET['basic']))
   		{
-  			$stmt = $pdo -> prepare('SELECT * FROM customersInd WHERE `ID_cus_ind` = :id'); // 2
+  			$stmt = $pdo -> prepare('SELECT * FROM customersInd WHERE `ID_cus_ind` = :id');
   			$stmt -> bindValue(':id', $_GET['id'], PDO::PARAM_INT);
-  			$stmt -> execute(); // 3
-  			if($details = $stmt -> fetch()) // 4
+  			$stmt -> execute();
+  			if($details = $stmt -> fetch())
   			{
-         if(isset($_POST['save'])) {
-            $ins = "UPDATE customersIND SET
-            ID_cus_ind = :ID_cus_ind,
-          name_cus_ind = :name_cus_ind,
-          surname_cus_ind = :surname_cus_ind,
-          pesel_cus_ind = :pesel_cus_ind,
-          number_cus_ind = :number_cus_ind,
-          tel_cus_ind = :tel_cus_ind,
-          email_cus_ind = :email_cus_ind,
-          country_corr_cus_ind = :country_corr_cus_ind,
-          code_corr_cus_ind = :code_corr_cus_ind,
-          city_corr_cus_ind = :city _corr_cus_ind,
-          street_corr_cus_ind = :street_corr_cus_ind,
-          numberhouse_corr_cus_ind = :numberhouse_corr_cus_ind,
-          numberflat_corr_cus_ind =:numberflat_corr_cus_ind,
-          country_reg_cus_ind = :country_reg_cus_ind,
-          code_reg_cus_ind = :code_reg_cus_ind,
-          city_reg_cus_ind = :city_reg_cus_ind,
-          street_reg_cus_ind = :street_reg_cus_ind,
-          numberhouse_reg_cus_ind = :numberhouse_reg_cus_ind,
-          numberflat_reg_cus_ind = :numberflat_reg_cus_ind,
-          period_cus_ind = :period_cus_ind
-          ";
-         }
-         ?> 
-        <div class="container-fluid">
-         <div class="panel panel-primary">
-         <div class="panel-heading">
-         <h3 class="panel-title">Dane podstawowe</h3>
-         </div>
-         <form action="<?$_PHP_SELF ?>" method="POST" id="editInd">
-         <p class="alert-info">Umowa ważna od <? echo $details['period_cus_ind']?></p>
-         <p><input type="hidden" placeholder="<?$details['ID_cus_ind']?>"/></p>
-         <p><b>Imię:</b><input type="text"  placeholder="<? echo $details['name_cus_ind']?>"></p>
-         <p><b>Nazwisko:</b> <input type="text" placeholder= <? echo $details['surname_cus_ind']?>></p>
-         <p><b>PESEL:</b><input type="text" placeholder= <? echo $details['pesel_cus_ind']?>></p>
-         <p><b>E-mail:</b><input type="text" placeholder= <? echo $details['email_cus_ind']?>></p>
-         <p><b>Numer telefonu:</b><input type="text" placeholder=<? echo $details['tel_cus_ind']?>></p>
-         </div>
-         <hr>
 
-         <div class="panel panel-primary">
-         <div class="panel-heading">
-         <h3 class="panel-title">Adres do korespondencji</h3>
-         </div>
-         <p><b>Kraj:</b><input type="text" placeholder=<? echo $details['country_corr_cus_ind']?>></p>
-         <p><b>Kod pocztowy:</b><input type="text" placeholder= <?echo $details['code_corr_cus_ind']?>></p>
-         <p><b>Miejscowość:</b><input type="text" placeholder=<? echo $details['city_corr_cus_ind']?>></p>
-         <p><b>Ulica:</b><input type="text" placeholder = <? echo $details['street_corr_cus_ind']?>></p>
-         <p><b>Numer domu:</b><input type="text" placeholder=<? echo $details['numberhouse_corr_cus_ind']?>></p>
-         <p><b>Numer lokalu:</b><input type="text" placeholder= <? echo $details['numberflat_corr_cus_ind']?>></p>
-         </div>
-         <div class="panel panel-primary">
-         <div class="panel-heading">
-         <h3 class="panel-title">Adres zameldowania</h3>
-         </div>
-         <p><b>Kraj:</b><input type="text" placeholder=<? echo $details['country_reg_cus_ind']?>></p>
-         <p><b>Kod pocztowy:</b><input type="text" placeholder=<? echo $details['code_reg_cus_ind']?>></p>
-         <p><b>Miejscowość:</b><input type="text" placeholder=<? echo $details['city_reg_cus_ind']?>></p>
-         <p><b>Ulica:</b><input type="text" placeholder= <? echo $details['street_reg_cus_ind']?>></p>
-         <p><b>Numer domu:</b><input type="text" placeholder= <? echo $details['numberhouse_reg_cus_ind']?>></p>
-         <p><b>Numer lokalu:</b><input type="text" placeholder= <? echo $details['numberflat_reg_cus_ind']?>></p>
-         </div>
-          <button class="btn btn-success" type="submit" name="save">Zapisz</button>
-          <button class="btn btn-warning" type="reset">Kasuj dane</button>
-          <button class="btn btn-danger">Anuluj edycję</button>
-         </div>
-          <a href="overview.php">Powrót do listy umów</a>
-          <br>
-          <a href="../../main.php">Powrót do strony głównej</a>
-<?
-         }
-  			else
-  			{
-  				echo '<hr/><p>Przepraszamy, podany rekord nie istnieje!</p>';
-  			}
-  			$stmt -> closeCursor();
-  		}
-  	}
-  	catch(PDOException $e)
-  	{
-  		echo 'Wystapil blad biblioteki PDO: ' . $e->getMessage();
-  	}
+  				echo '<div class="container-fluid card" style="width:50rem">
+          <div class="panel panel-primary">
+          <div class="panel-heading">
+					<form method="POST">
+<center>					<h2 class="panel-title" ><badge class="badge badge-ligth">'.$details['name_cus_ind'].' '.$details['surname_cus_ind'].'</badge></center>
+          </div>
 
+          <p class="alert-info">Umowa ważna od '.$details['period_cus_ind'].'</p>
+          <p><input type="hidden" placeholder="'.$details['ID_cus_ind'].'/"></p>
+          <p name="name"><b>Imię:</b><input type="text" class="form-control" placeholder= '.$details['name_cus_ind'].'></p>
+  				<p name="surname"><b>Nazwisko:</b><input type="text" class="form-control" placeholder= '.$details['surname_cus_ind'].'></p>
+  				<p name="pesel"><b>PESEL:</b> '.$details['pesel_cus_ind'].'</p>
+  				<p name="email"><b>E-mail:</b> <input type="mail" class="form-control" placeholder='.$details['email_cus_ind'].'></p>
+  				<p name="tel"><b>Numer telefonu:</b><input type="text" class="form-control" placeholder= '.$details['tel_cus_ind'].'></p>
+					<button class="btn btn-sm btn-success" type="submit">Zapisz zmiany</button>
+					<button class="btn btn-sm btn-warning" type="reset">Wyczyść</button>
+					<hr>
+					</form>
+					<a href="#" class="btn btn-danger">Powrót</a>
+					</div>';
+				}
+			} // end of if(isset($_GET['basic']))
+			if(isset($_GET['corr']))
+			{
+				$stmt = $pdo -> prepare('SELECT * FROM customersInd WHERE `ID_cus_ind` = :id');
+				$stmt -> bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+				$stmt -> execute();
+				if($details = $stmt -> fetch())
+				{
+
+					echo '<div class="container-fluid card" style="width:50rem">
+					<div class="panel panel-primary">
+					<div class="panel-heading">
+					<form method="POST">
+<center>					<h2 class="panel-title" ><badge class="badge badge-light">'.$details['country_corr_cus_ind'].' '.$details['code_corr_cus_ind'].' '.$details['city_corr_cus_ind'].' '.$details['street_corr_cus_ind'].' '.$details['numberhouse_corr_cus_ind'].' / '.$details['numberflat_corr_cus_ind'].'</bagde></center>
+					</div>
+
+					<p class="alert-info">Umowa ważna od '.$details['period_cus_ind'].'</p>
+					<p><input type="hidden" placeholder="'.$details['ID_cus_ind'].'/"></p>
+					<p name="name"><b>Kraj:</b><input type="text" class="form-control" placeholder= '.$details['country_corr_cus_ind'].'></p>
+					<p name="surname"><b>Kod pocztowy:</b><input type="text" class="form-control" placeholder= '.$details['code_corr_cus_ind'].'></p>
+					<p name="pesel"><b>Miejscowość:</b><input type="text" class="form-control" placeholder='.$details['city_corr_cus_ind'].'></p>
+					<p name="email"><b>Ulica:</b> <input type="mail" class="form-control" placeholder="'.$details['street_corr_cus_ind'].'"></p>
+					<p name="tel"><b>Numer budynku:</b><input type="text" class="form-control" placeholder= '.$details['numberhouse_corr_cus_ind'].'></p>
+					<p name="tel"><b>Numer budynku:</b><input type="text" class="form-control" placeholder= '.$details['numberflat_corr_cus_ind'].'></p>
+					<button class="btn btn-sm btn-success" type="submit">Zapisz zmiany</button>
+
+					<button class="btn btn-sm btn-warning" type="reset">Wyczyść</button>
+					<hr>
+					</form>
+					<a href="#" class="btn btn-danger">Powrót</a>
+					</div>';
+				}
+			} // end of if(isset($_GET['corr']))
+			if(isset($_GET['reg']))
+			{
+				$stmt = $pdo -> prepare('SELECT * FROM customersInd WHERE `ID_cus_ind` = :id');
+				$stmt -> bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+				$stmt -> execute();
+				if($details = $stmt -> fetch())
+				{
+
+					echo '<div class="container-fluid card" style="width:50rem">
+					<div class="panel panel-primary">
+					<div class="panel-heading">
+					<form method="POST">
+<center>					<h2 class="panel-title" ><badge class="badge badge-light">'.$details['country_corr_cus_ind'].' '.$details['code_reg_cus_ind'].' '.$details['city_reg_cus_ind'].' '.$details['street_reg_cus_ind'].' '.$details['numberhouse_reg_cus_ind'].' / '.$details['numberflat_reg_cus_ind'].'</bagde></center>
+					</div>
+
+					<p class="alert-info">Umowa ważna od '.$details['period_cus_ind'].'</p>
+					<p><input type="hidden" placeholder="'.$details['ID_cus_ind'].'/"></p>
+					<p name="name"><b>Kraj:</b><input type="text" class="form-control" placeholder= '.$details['country_reg_cus_ind'].'></p>
+					<p name="surname"><b>Kod pocztowy:</b><input type="text" class="form-control" placeholder= '.$details['code_reg_cus_ind'].'></p>
+					<p name="pesel"><b>Miejscowość:</b><input type="text" class="form-control" placeholder='.$details['city_reg_cus_ind'].'></p>
+					<p name="email"><b>Ulica:</b> <input type="mail" class="form-control" placeholder="'.$details['street_reg_cus_ind'].'"></p>
+					<p name="tel"><b>Numer budynku:</b><input type="text" class="form-control" placeholder= '.$details['numberhouse_reg_cus_ind'].'></p>
+					<p name="tel"><b>Numer budynku:</b><input type="text" class="form-control" placeholder= '.$details['numberflat_reg_cus_ind'].'></p>
+					<button class="btn btn-sm btn-success" type="submit">Zapisz zmiany</button>
+
+					<button class="btn btn-sm btn-warning" type="reset">Wyczyść</button>
+					<hr>
+					</form>
+					<a href="#" class="btn btn-danger">Powrót</a>
+					</div>';
+				}
+			} // end of if(isset($_GET['corr']))
 
 }
+catch(PDOException $e) {
+	echo "Błąd!!".$e->getMessage();
+}
+}
+
 ?>

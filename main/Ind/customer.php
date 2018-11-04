@@ -69,21 +69,25 @@ else {
   				echo '<div class="container-fluid">
           <div class="panel panel-primary">
           <div class="panel-heading">
-          <h3 class="panel-title">Dane podstawowe</h3>
+					<form method="POST">
+          <h3 class="panel-title">Dane podstawowe <a href="edit.php?basic&id='.$details['ID_cus_ind'].'" class="badge" name="basic">Edytuj dane</a></h3>
+
           </div>
+
           <p class="alert-info">Umowa ważna od '.$details['period_cus_ind'].'</p>
           <p><input type="hidden" placeholder="'.$details['ID_cus_ind'].'/"></p>
-          <p><b>Imię:</b> '.$details['name_cus_ind'].'</p>
-  				<p><b>Nazwisko:</b> '.$details['surname_cus_ind'].'</p>
-  				<p><b>PESEL:</b> '.$details['pesel_cus_ind'].'</p>
-  				<p><b>E-mail:</b> '.$details['email_cus_ind'].'</p>
-  				<p><b>Numer telefonu:</b> '.$details['tel_cus_ind'].'</p>
-          </div>
+          <p name="name"><b>Imię:</b> '.$details['name_cus_ind'].'</p>
+  				<p name="surname"><b>Nazwisko:</b> '.$details['surname_cus_ind'].'</p>
+  				<p name="pesel"><b>PESEL:</b> '.$details['pesel_cus_ind'].'</p>
+  				<p name="email"><b>E-mail:</b> '.$details['email_cus_ind'].'</p>
+  				<p name="tel"><b>Numer telefonu:</b> '.$details['tel_cus_ind'].'</p>
+					</form>
+					</div>
           </hr>
 
           <div class="panel panel-primary">
           <div class="panel-heading">
-          <h3 class="panel-title">Adres do korespondencji</h3>
+          <h3 class="panel-title">Adres do korespondencji <a href="edit.php?corr&id='.$details['ID_cus_ind'].'" class="badge">Edytuj dane</a></h3>
           </div>
           <p><b>Kraj:</b> '.$details['country_corr_cus_ind'].'</p>
           <p><b>Kod pocztowy:</b> '.$details['code_corr_cus_ind'].'</p>
@@ -94,7 +98,7 @@ else {
           </div>
           <div class="panel panel-primary">
           <div class="panel-heading">
-          <h3 class="panel-title">Adres zameldowania</h3>
+          <h3 class="panel-title">Adres zameldowania <a href="edit.php?reg&id='.$details['ID_cus_ind'].'" class="badge">Edytuj dane</a></h3>
           </div>
           <p><b>Kraj:</b> '.$details['country_reg_cus_ind'].'</p>
           <p><b>Kod pocztowy:</b> '.$details['code_reg_cus_ind'].'</p>
@@ -115,7 +119,7 @@ else {
   <ul class="dropdown-menu">
   <li><a href="../../arch/Ind/documents.php?id='.$details['ID_cus_ind'].'" class="alert alert-info">Dokumenty</a></li>
 
-  <li><a href="edit.php?id='.$details['ID_cus_ind'].'" class="alert alert-warning">Edytuj</a></li>
+
     <li role="separator" class="divider"></li>
     <li><a href="delete.php?id='.$details['ID_cus_ind'].'" class=" alert-danger">Usuń</a></li>
   </ul>

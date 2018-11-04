@@ -22,27 +22,7 @@ mysql_query("set names utf8");
 if(isset($_POST['add'])) {
 try {
 include('../../scripts/db/main.php');
-$ins = "INSERT INTO customersInd(
-      ID_cus_ind,
-      name_cus_ind,
-      surname_cus_ind,
-      pesel_cus_ind,
-      number_cus_ind,
-      tel_cus_ind,
-      email_cus_ind,
-      country_corr_cus_ind,
-      code_corr_cus_ind,
-      city_corr_cus_ind,
-      street_corr_cus_ind,
-      numberhouse_corr_cus_ind,
-      numberflat_corr_cus_ind,
-      country_reg_cus_ind,
-      code_reg_cus_ind,
-      city_reg_cus_ind,
-      street_reg_cus_ind,
-      numberhouse_reg_cus_ind,
-      numberflat_reg_cus_ind,
-      period_cus_ind)
+$ins = "INSERT INTO customersInd(ID_cus_ind,name_cus_ind,surname_cus_ind,pesel_cus_ind,number_cus_ind,tel_cus_ind,email_cus_ind,country_corr_cus_ind,code_corr_cus_ind,city_corr_cus_ind,street_corr_cus_ind,numberhouse_corr_cus_ind,numberflat_corr_cus_ind,country_reg_cus_ind,code_reg_cus_ind,city_reg_cus_ind,street_reg_cus_ind,numberhouse_reg_cus_ind,numberflat_reg_cus_ind,period_cus_ind)
       VALUES(
         :ID_cus_ind,
         :name_cus_ind,
@@ -100,44 +80,41 @@ catch(PDOException $e) {
 else {
 ?>
 <div class="container">
-<h2>Dodawanie nowego rekordu</h2>
+<h2>Dodawanie nowej umowy</h2>
 <form action="<?php $_PHP_SELF ?>" method="POST" name="addInd" >
 <ul class="list-group">
 	<div class="panel panel-success">
 	<label class="panel-heading">Dane personalne</label>
 	<li class="list-group-item"><input type="hidden" name="ID_cus_ind"></li>
-<li class="list-group-item">Imię  : <input type="text" name="name_cus_ind" placeholder="Wpisz imię" required></li>
+	<li class="list-group-item">Imię  : <input type="text" name="name_cus_ind" placeholder="Wpisz imię" required></li>
 	<li class="list-group-item">Nazwisko : <input type="text" name="surname_cus_ind" placeholder="Wpisz nazwisko" required></li>
-<li class="list-group-item">PESEL : <input type="text" name="pesel_cus_ind" placeholder="Wpisz PESEL" required maxlength="11"></li>
-
-<li class="list-group-item">Numer Klienta[<i>Wpisz liczbę, która pojawi się w okienku obok</i>] : <? echo rand(0,100)?> <input type="text" name="number_cus_ind" required></li>
-<li class="list-group-item">Numer telefonu : <input type="text" name="tel_cus_ind" placeholder="Wpisz numer telefonu" required></li>
-<li class="list-group-item">Adres e-mail : <input type="email" name="email_cus_ind" placeholder="Wpisz adres email" required></li>
-
+	<li class="list-group-item">PESEL : <input type="text" name="pesel_cus_ind" placeholder="Wpisz PESEL" required maxlength="11"></li>
+	<li class="list-group-item">Numer Klienta[<i>Wpisz liczbę, która pojawi się w okienku obok</i>] : <? echo rand(0,100)?> <input type="text" name="number_cus_ind" required></li>
+	<li class="list-group-item">Numer telefonu : <input type="text" name="tel_cus_ind" placeholder="Wpisz numer telefonu" required></li>
+	<li class="list-group-item">Adres e-mail : <input type="email" name="email_cus_ind" placeholder="Wpisz adres email" required></li>
 </div>
 <div class="panel panel-success">
 	<label class="panel-heading" >Dane teleadresowe - adres zameldowania</label>
 		<li class="list-group-item">Kraj : <input type="text" name="country_reg_cus_ind" placeholder="Wpisz nazwę kraju" required></li>
 		<li class="list-group-item">Kod pocztowy : <input type="text" name="code_reg_cus_ind" placeholder="Wpisz kod pocztowy" required></li>
-	<li class="list-group-item">Miejscowość : <input type="text" name="city_reg_cus_ind" placeholder="Wpisz nazwę miejscowości"required></li>
+		<li class="list-group-item">Miejscowość : <input type="text" name="city_reg_cus_ind" placeholder="Wpisz nazwę miejscowości"required></li>
 		<li class="list-group-item">Ulica : <input type="text" name="street_reg_cus_ind" placeholder="Wpisz nazwę ulicy" required></li>
-	<li class="list-group-item">Numer domu : <input type="text" name="numberhouse_reg_cus_ind" placeholder="Wpisz numer domu" required></li>
+		<li class="list-group-item">Numer domu : <input type="text" name="numberhouse_reg_cus_ind" placeholder="Wpisz numer domu" required></li>
 		<li class="list-group-item">Numer mieszkania : <input type="text" name="numberflat_reg_cus_ind"placeholder="Wpisz numer mieszkania" required></li>
 </div>
 		<div class="panel panel-success">
 				<label class="panel-heading" >Dane teleadresowe - adres do korespondencji</label>
 				<label class="panel-body">Wpisz dane lub... <input type="checkbox" onChange="copyStrings()">Dane te same jak zameldowania</button></label>
-
-			<li class="list-group-item">Kraj : <input type="text" name="country_corr_cus_ind" placeholder="Wpisz nazwę kraju" required></li>
-					<li class="list-group-item">Kod pocztowy : <input type="text" name="code_corr_cus_ind" placeholder="Wpisz kod pocztowy" required></li>
+				<li class="list-group-item">Kraj : <input type="text" name="country_corr_cus_ind" placeholder="Wpisz nazwę kraju" required></li>
+				<li class="list-group-item">Kod pocztowy : <input type="text" name="code_corr_cus_ind" placeholder="Wpisz kod pocztowy" required></li>
 				<li class="list-group-item">Miejscowość : <input type="text" name="city_corr_cus_ind" placeholder="Wpisz nazwę miejscowości"required></li>
-					<li class="list-group-item">Ulica : <input type="text" name="street_corr_cus_ind" placeholder="Wpisz nazwę ulicy" required></li>
+				<li class="list-group-item">Ulica : <input type="text" name="street_corr_cus_ind" placeholder="Wpisz nazwę ulicy" required></li>
 				<li class="list-group-item">Numer domu : <input type="text" name="numberhouse_corr_cus_ind" placeholder="Wpisz numer domu" required></li>
-					<li class="list-group-item">Numer mieszkania : <input type="text" name="numberflat_corr_cus_ind"placeholder="Wpisz numer mieszkania" required></li>
+				<li class="list-group-item">Numer mieszkania : <input type="text" name="numberflat_corr_cus_ind"placeholder="Wpisz numer mieszkania" required></li>
 </div>
-<div class="panel panel-success">
-<li class="list-group-item">Od kiedy klientem: <input type="date" name="period_cus_ind"></li>
-</div>
+	<div class="panel panel-success">
+		<li class="list-group-item">Od kiedy klientem: <input type="date" name="period_cus_ind"></li>
+	</div>
 <div style="clear : both;">
 <button type="submit" class="btn btn-success" name="add" id="add">Zapisz dane</button>
 <button type="reset" class="btn btn-warning">Kasuj dane</button>
