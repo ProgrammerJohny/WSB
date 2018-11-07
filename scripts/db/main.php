@@ -1,5 +1,5 @@
 <meta charset="utf-8"/>
-<?php
+<?
 $servername = "localhost";
 $username = "admin";
 $password = "Webmaster2017";

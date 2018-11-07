@@ -1,4 +1,4 @@
-<?php
+<?
 session_start();
 
 
@@ -48,7 +48,7 @@ Wyszukaj po imieniu : <input type="text" id="input_ind" onkeyup="SearchName()" p
 Wyszukaj po PESEL : <input type="text" id="input_ind1" onkeyup="SearchPesel()" placeholder="PESEL">
 Wyszukaj po numerze Klienta : <input type="text" id="input_ind2" onkeyup="SearchNumber()" placeholder="Numer Klienta">
 </div>
-<?php
+<?
 try {
   include('../../scripts/db/main.php');
   $conn->query("set names utf8");

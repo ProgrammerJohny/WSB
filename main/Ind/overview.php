@@ -1,4 +1,4 @@
-<?php
+<?
 session_start();
 
 
@@ -56,12 +56,11 @@ else {?>
 	Wyszukaj po imieniu : <input type="text" id="input_ind" onkeyup="SearchName()" placeholder="Imię">
 	Wyszukaj po PESEL : <input type="text" id="input_ind1" onkeyup="SearchPesel()" placeholder="PESEL">
 	Wyszukaj po numerze Klienta : <input type="text" id="input_ind2" onkeyup="SearchNumber()" placeholder="Numer Klienta">
-</div><?php
-
+</div><?
 echo '<h2>Lista wszystkich umów Klientów Indywidualnych</h2>';
    try
    {
-      $conn = new PDO('mysql:host=localhost;dbname=aplikacja', 'root', '');
+      $conn = new PDO('mysql:host=localhost;dbname=aplikacja', 'admin', 'Webmaster2017');
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$conn->query("set names utf8");
       $stmt = $conn -> query('SELECT * FROM customersInd');

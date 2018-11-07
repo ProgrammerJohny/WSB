@@ -6,14 +6,11 @@ function fetch_data()
     $pdf->setLanguageArray($l);
   }
      $output = '';
-     $conn = new PDO('mysql:host=localhost;dbname=aplikacja', "admin", "Webmaster2017");
+     $conn = new PDO('mysql:host=localhost;dbname=aplikacja', 'admin', 'Webmaster2017');
      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      $conn->query("set names utf8");
-    
-     $dataYear = date('Y-m-d',strtotime("-1 year"));
-     
 
-     $stmt = $conn -> query("SELECT * FROM customersInd WHERE period_cus_ind >= '$dataYear'");
+     $stmt = $conn -> query("SELECT * FROM customersInd");
      while($row = $stmt->fetch())
      {
 
@@ -79,7 +76,7 @@ if(isset($_POST["create_pdf"]))
      <body>
           <br /><br />
           <div class="container" style="width:700px;">
-               <h3 align="center">Tworzenie raportu rocznego [<?php echo date('d.m.Y')?> - <?php echo date('d.m.Y',strtotime("-1 year"))?>]</h3><br />
+               <h3 align="center">Tworzenie raportu rocznego [<? echo date('d.m.Y')?> - <? echo date('d.m.Y',strtotime("-1 year"))?>]</h3><br />
                <h4 align="center">Jeżeli status umowy = 0 <b>umowa aktywna</b></h4>
                <div class="table-responsive">
                     <table class="table table-bordered">

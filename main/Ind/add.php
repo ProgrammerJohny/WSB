@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<?php
+<?
 
 mysql_query("set names utf8");
 
@@ -125,7 +125,7 @@ else {
 </form>
 </div>
 
-<?php
+<?
 } // koniec pętli else
 ?>
 
@@ -135,7 +135,7 @@ else {
 <h2 id="feedback" onclick="sendMail();">Zgłoś problem</h2>
 </footer>
 
-
+>
 
 </body>
 </html>

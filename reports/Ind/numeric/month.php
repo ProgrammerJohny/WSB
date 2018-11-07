@@ -6,14 +6,11 @@ function fetch_data()
     $pdf->setLanguageArray($l);
   }
      $output = '';
-     $conn = new PDO('mysql:host=localhost;dbname=aplikacja', "admin", "Webmaster2017");
+     $conn = new PDO('mysql:host=localhost;dbname=aplikacja', 'admin', 'Webmaster2017');
      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      $conn->query("set names utf8");
 
-     $dataMonth = date('Y-m-d',strtotime("-1 month"));
-     
-
-     $stmt = $conn -> query("SELECT * FROM customersInd Where period_cus_ind >= '$dataMonth'");
+     $stmt = $conn -> query("SELECT * FROM customersInd");
      while($row = $stmt->fetch())
      {
 
@@ -36,7 +33,7 @@ if(isset($_POST["create_pdf"]))
   require_once('../../tcpdf/tcpdf.php');
      $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'utf8', false);
      $obj_pdf->SetCreator(PDF_CREATOR);
-     $obj_pdf->SetTitle("Raport roczny");
+     $obj_pdf->SetTitle("Raport miesięczny");
      $obj_pdf->SetHeaderData('', '', PDF_HEADER_TITLE, PDF_HEADER_STRING);
      $obj_pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
      $obj_pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
@@ -66,20 +63,20 @@ if(isset($_POST["create_pdf"]))
      $content .= fetch_data();
      $content .= '</table>';
      $obj_pdf->writeHTML($content);
-     $obj_pdf->Output('Raport roczny.pdf', 'I');
+     $obj_pdf->Output('Raport miesięczny.pdf', 'I');
 }
 ?>
 <!DOCTYPE html>
 <html>
      <head>
-          <title>Raport roczny</title>
+          <title>Raport tygodniowy</title>
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
           <meta charset="utf-8"/>
      </head>
      <body>
           <br /><br />
           <div class="container" style="width:700px;">
-               <h3 align="center">Tworzenie raportu miesięcznego [<?php echo date('d.m.Y')?> - <?php echo date('d.m.Y',strtotime("-1 month"))?>]</h3><br />
+               <h3 align="center">Tworzenie raportu miesięcznego [<? echo date('d.m.Y')?> - <? echo date('d.m.Y',strtotime("-1 month"))?>]</h3><br />
                <h4 align="center">Jeżeli status umowy = 0 <b>umowa aktywna</b></h4>
                <div class="table-responsive">
                     <table class="table table-bordered">
