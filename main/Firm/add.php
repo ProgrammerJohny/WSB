@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 
@@ -48,7 +48,7 @@ if($_SESSION["zalogowany"]!=1){
 }
 else{
 ?>
-<?
+<?php
 
 mysql_query("set names utf8");
 if(isset($_POST['add'])) {
@@ -153,7 +153,7 @@ else {
 </form>
 </div>
 
-<?
+<?php
 } // koniec pętli else
 ?>
 

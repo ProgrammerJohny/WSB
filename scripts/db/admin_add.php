@@ -11,10 +11,10 @@
   <meta charset="utf-8"/>
 </head>
 <body>
-<?
+<?php
 include('main.php');
 ?>
-<?
+<?php
 try {
 $ins = "INSERT INTO members(member_id,member_login,member_password,member_email,member_tel,member_name,member_surname,member_date) VALUES(
   :member_id,
