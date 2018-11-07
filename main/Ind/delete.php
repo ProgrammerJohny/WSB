@@ -6,8 +6,8 @@ session_start();
 
 if(empty($_SESSION["zalogowany"]))$_SESSION["zalogowany"]=0;
 
-mysql_connect("localhost", "admin", "Webmaster2017")or die("Nie można nawiązać połączenia z bazą");
-mysql_select_db("aplikacja")or die("Wystąpił błąd podczas wybierania bazy danych");
+mysql_connect("localhost", "janzales_wsb", "Janek1994")or die("Nie można nawiązać połączenia z bazą");
+mysql_select_db("janzales_wsb")or die("Wystąpił błąd podczas wybierania bazy danych");
 
 function ShowLogin($komunikat=""){
 	echo "$komunikat<br>";
@@ -55,7 +55,7 @@ if($_SESSION["zalogowany"]!=1){
 else {
   try
   	{
-  		$pdo = new PDO('mysql:host=localhost;dbname=aplikacja', 'admin', 'Webmaster2017');
+  		$pdo = new PDO('mysql:host=localhost;dbname=janzales_wsb', 'janzales_wsb', 'Janek1994');
   		$pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $pdo->query("set names utf8");
 
@@ -65,7 +65,7 @@ else {
 # $stmt->execute();
   		if(isset($_GET['id'])) // 1
   		{
-  			$stmt = $pdo -> prepare('SELECT * FROM customersInd WHERE `ID_cus_ind` = :id'); // 2
+  			$stmt = $pdo -> prepare('SELECT * FROM customersind WHERE `ID_cus_ind` = :id'); // 2
   			$stmt -> bindValue(':id', $_GET['id'], PDO::PARAM_INT);
   			$stmt -> execute(); // 3
   			if($details = $stmt -> fetch()) // 4
