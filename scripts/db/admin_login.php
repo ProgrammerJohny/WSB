@@ -77,7 +77,7 @@ span.psw {
 </style>
 </head>
 <body>
-<?
+<?php
 include('main.php');
 
 if(isset($_POST['submit'])) {
@@ -120,7 +120,7 @@ else {
     <span class="psw">Forgot <a href="#">password?</a></span>
   </div>
 </form>
-<?
+<?php
 }
 ?>
 </body>
