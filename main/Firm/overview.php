@@ -4,8 +4,8 @@ session_start();
 
 if(empty($_SESSION["zalogowany"]))$_SESSION["zalogowany"]=0;
 
-mysql_connect("localhost", "admin", "Webmaster2017")or die("Nie można nawiązać połączenia z bazą");
-mysql_select_db("aplikacja")or die("Wystąpił błąd podczas wybierania bazy danych");
+mysql_connect("localhost", "janzales_wsb", "Janek1994")or die("Nie można nawiązać połączenia z bazą");
+mysql_select_db("janzales_wsb")or die("Wystąpił błąd podczas wybierania bazy danych");
 
 function ShowLogin($komunikat=""){
 	echo "$komunikat<br>";
@@ -60,10 +60,12 @@ else {?>
 echo '<h2>Lista wszystkich umów Klientów Biznesowych</h2>';
    try
    {
-      $conn = new PDO('mysql:host=localhost;dbname=aplikacja', 'root', '');
+
+      $conn = new PDO('mysql:host=localhost;dbname=janzales_wsb', 'janzales_wsb', 'Janek1994');
+
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$conn->query("set names utf8");
-      $stmt = $conn -> query('SELECT * FROM customersFirm');
+      $stmt = $conn -> query('SELECT * FROM customersfirm');
       echo '<table class="table" id="TableFirm">';
 			echo '<tr class="alert-success">';
 			echo '<th>ID</th>';

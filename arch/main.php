@@ -5,8 +5,8 @@ session_start();
 
 if(empty($_SESSION["zalogowany"]))$_SESSION["zalogowany"]=0;
 
-mysql_connect("localhost", "admin", "Webmaster2017")or die("Nie można nawiązać połączenia z bazą");
-mysql_select_db("aplikacja")or die("Wystąpił błąd podczas wybierania bazy danych");
+mysql_connect("localhost", "janzales_wsb", "Janek1994")or die("Nie można nawiązać połączenia z bazą");
+mysql_select_db("janzales_wsb")or die("Wystąpił błąd podczas wybierania bazy danych");
 
 function ShowLogin($komunikat=""){
 	echo "$komunikat<br>";

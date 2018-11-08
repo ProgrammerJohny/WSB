@@ -4,8 +4,8 @@ session_start();
 
 if(empty($_SESSION["zalogowany"]))$_SESSION["zalogowany"]=0;
 
-mysql_connect("localhost", "admin", "Webmaster2017")or die("Nie można nawiązać połączenia z bazą");
-mysql_select_db("aplikacja")or die("Wystąpił błąd podczas wybierania bazy danych");
+mysql_connect("localhost", "janzales_wsb", "Janek1994")or die("Nie można nawiązać połączenia z bazą");
+mysql_select_db("janzales_wsb")or die("Wystąpił błąd podczas wybierania bazy danych");
 
 function ShowLogin($komunikat=""){
 	echo "$komunikat<br>";
@@ -52,7 +52,7 @@ Wyszukaj po numerze Klienta : <input type="text" id="input_ind2" onkeyup="Search
 try {
   include('../../scripts/db/main.php');
   $conn->query("set names utf8");
-  $stmt = $conn -> query('SELECT * FROM customersInd_arch');
+  $stmt = $conn -> query('SELECT * FROM customersind_arch');
   echo '<table class="table" id="TableInd">';
   echo '<tr class="alert-success">';
   echo '<th>ID</th>';
