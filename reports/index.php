@@ -77,7 +77,7 @@ function ShowLogin($komunikat=""){
     <p class="card-text">Generuj raport w oparciu o wybrany okres czasu</p>
 		<a href="Firm/numeric/week.php" class="btn btn-secondary">Ostatni tydzień [<?php echo date('d.m.Y')?> - <?php echo date('d.m.Y',strtotime("-1 week"))?>]</a>
 		<a href="Firm/numeric/month.php" class="btn btn-secondary">Ostatnie 30 dni [<?php echo date('d.m.Y')?> - <?php echo date('d.m.Y',strtotime("-1 month"))?>]</a>
-		<a href="Firm/numeric/year.php" class="btn btn-secondary">Ostatni rok [<<?php echo date('d.m.Y')?> - <?php echo date('d.m.Y',strtotime("-1 year"))?>]</a>
+		<a href="Firm/numeric/year.php" class="btn btn-secondary">Ostatni rok [<?php echo date('d.m.Y')?> - <?php echo date('d.m.Y',strtotime("-1 year"))?>]</a>
 
   </div>
 

@@ -99,7 +99,7 @@ else {
 ?>
 <h2>LOGOWANIE DO PANELU ADMINISTRACYJNEGO</h2>
 
-<form action="<?$_PHP_SELF?>" method="post">
+<form action="<?php$_PHP_SELF?>" method="post">
   <div class="imgcontainer">
     <img src="img_avatar2.png" alt="Avatar" class="avatar">
   </div>

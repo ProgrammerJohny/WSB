@@ -10,7 +10,10 @@ function fetch_data()
      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      $conn->query("set names utf8");
 
-     $stmt = $conn -> query("SELECT * FROM customersInd");
+     $dataMonth = date('Y-m-d',strtotime("-1 month"));
+     
+
+     $stmt = $conn -> query("SELECT * FROM customersInd Where period_cus_ind >= '$dataMonth'");
      while($row = $stmt->fetch())
      {
 
@@ -47,11 +50,11 @@ if(isset($_POST["create_pdf"]))
      $obj_pdf->AddPage();
      $content = '';
      $content .= '
-     <h3 align="center">Raport roczny</h3><br /><br />
+     <h3 align="center">Raport miesiÄ™czny</h3><br /><br />
      <table border="1">
           <tr align="center">
                <th width="5%">ID</th>
-               <th width="10%">Imiê</th>
+               <th width="10%">ImiÄ™</th>
                <th width="16%">Nazwisko</th>
                <th width="20%">PESEL</th>
                <th width="10%">Numer Klienta</th>
@@ -76,13 +79,13 @@ if(isset($_POST["create_pdf"]))
      <body>
           <br /><br />
           <div class="container" style="width:700px;">
-               <h3 align="center">Tworzenie raportu rocznego [<? echo date('d.m.Y')?> - <? echo date('d.m.Y',strtotime("-1 year"))?>]</h3><br />
-               <h4 align="center">Je¿eli status umowy = 0 <b>umowa aktywna</b></h4>
+               <h3 align="center">Tworzenie raportu miesiÄ™cznego [<?php echo date('d.m.Y')?> - <?php echo date('d.m.Y',strtotime("-1 month"))?>]</h3><br />
+               <h4 align="center">JeÅ¼eli status umowy = 0 <b>umowa aktywna</b></h4>
                <div class="table-responsive">
                     <table class="table table-bordered">
                          <tr>
                               <th width="5%">ID</th>
-                              <th width="30%">Imiê</th>
+                              <th width="30%">ImiÄ™</th>
                               <th width="10%">Nazwisko</th>
                               <th width="45%">PESEL</th>
                               <th width="10%">Numer Klienta</th>
@@ -96,9 +99,9 @@ if(isset($_POST["create_pdf"]))
                     </table>
                     <br />
                     <form method="post">
-                         <input type="submit" name="create_pdf" class="btn btn-warning" value="Utwórz PDF" />
+                         <input type="submit" name="create_pdf" class="btn btn-warning" value="UtwÃ³rz PDF" />
                     </form>
-                      <button class="btn-sm btn-link" onclick="window.close()">Zamknij okno i wróc do strony g³ównej</button>
+                      <button class="btn-sm btn-link" onclick="window.close()">Zamknij okno i wrÃ³c do strony gÅ‚Ã³wnej</button>
                </div>
           </div>
      </body>
