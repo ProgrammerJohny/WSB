@@ -6,11 +6,12 @@ function fetch_data()
     $pdf->setLanguageArray($l);
   }
      $output = '';
-     $conn = new PDO('mysql:host=localhost;dbname=aplikacja', 'admin', 'Webmaster2017');
+     $conn = new PDO('mysql:host=localhost;dbname=aplikacja', "admin", "Webmaster2017");
      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      $conn->query("set names utf8");
-
-     $stmt = $conn -> query("SELECT * FROM customersInd");
+     $dataWeek = date('Y-m-d',strtotime("-1 week"));
+     
+     $stmt = $conn -> query("SELECT * FROM customersInd WHERE period_cus_ind >= '$dataWeek'");
      while($row = $stmt->fetch())
      {
 
@@ -63,20 +64,20 @@ if(isset($_POST["create_pdf"]))
      $content .= fetch_data();
      $content .= '</table>';
      $obj_pdf->writeHTML($content);
-     $obj_pdf->Output('Raport miesięczny.pdf', 'I');
+     $obj_pdf->Output('Raport roczny.pdf', 'I');
 }
 ?>
 <!DOCTYPE html>
 <html>
      <head>
-          <title>Raport tygodniowy</title>
+          <title>Raport roczny</title>
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
           <meta charset="utf-8"/>
      </head>
      <body>
           <br /><br />
           <div class="container" style="width:700px;">
-               <h3 align="center">Tworzenie raportu tygodniowego [<? echo date('d.m.Y')?> - <? echo date('d.m.Y',strtotime("-1 week"))?>]</h3><br />
+               <h3 align="center">Tworzenie raportu tygodniowego [<?php echo date('d.m.Y')?> - <?php echo date('d.m.Y',strtotime("-1 week"))?>]</h3><br />
                <h4 align="center">Jeżeli status umowy = 0 <b>umowa aktywna</b></h4>
                <div class="table-responsive">
                     <table class="table table-bordered">

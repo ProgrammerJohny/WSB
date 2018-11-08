@@ -13,12 +13,12 @@
   <meta charset="utf-8"/>
 </head>
 <body>
-<?
+<?php
 
 
 include('main.php');
 ?>
-<?
+<?php
 echo "<div class='container'>";
 echo "<table class='table table-hover'>";
 echo "<tr>
@@ -152,7 +152,7 @@ button:hover {
   <div class="tab">I:
     <p><input placeholder="Nazwa Użytkownika" oninput="this.className = ''" name="member_login"></p>
     <p><input placeholder="Hasło" oninput="this.className = ''" name="member_password" type="password" >
-<?
+<?php
 //skrypt generujący losowo hasło
 function passwordGenerator($length) {
     $uppercase = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'W', 'Y', 'Z');

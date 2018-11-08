@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 
@@ -56,11 +56,13 @@ else {?>
     Wyszukaj po nazwie firmy : <input type="text" id="input_firm" onkeyup="SearchNameFirm()" placeholder="Nazwa firmy">
 	Wyszukaj po NIP : <input type="text" id="input_firm1" onkeyup="SearchNIP()" placeholder="NIP">
 	Wyszukaj po numerze Klienta : <input type="text" id="input_firm2" onkeyup="SearchNumberFirm()" placeholder="Numer Klienta">
-</div><?
+</div><?php
 echo '<h2>Lista wszystkich umów Klientów Biznesowych</h2>';
    try
    {
+
       $conn = new PDO('mysql:host=localhost;dbname=janzales_wsb', 'janzales_wsb', 'Janek1994');
+
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$conn->query("set names utf8");
       $stmt = $conn -> query('SELECT * FROM customersfirm');
